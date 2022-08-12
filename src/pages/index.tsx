@@ -1,48 +1,50 @@
-import {TextInput} from "@mantine/core";
+import {Textarea} from "@mantine/core";
 import {useEffect, useState} from "react";
 import {useDebouncedValue} from "@mantine/hooks";
-import axios from "axios";
-import NLPCloudClient from 'nlpcloud'
+import {NextPage} from "next";
+import {useQuery} from "@tanstack/react-query";
+import TranslateApi from "@services/translate.api";
+import SelectLanguage from "@components/SelectLanguage";
 
-const client = new NLPCloudClient('nllb-200-3-3b', 'a174e017a602ee75482aa19a651c9c0f6854675a', true)
+const Home: NextPage = () => {
+    const [value, setValue] = useState<string>('Hello');
+    const [data, setData] = useState<any>(null);
+    const [debounced] = useDebouncedValue(value, 1000);
 
-export default function Home() {
-    const [value, setValue] = useState<string>('');
-    const [data, setData] = useState<any>();
-    const [debounced] = useDebouncedValue(value, 500);
-
-
-    const fetchTranslate = async () => {
-        /*const res = await axios.post(`https://cors-anywhere.herokuapp.com/https://api-free.deepl.com/v2/translate?auth_key=${process.env.NEXT_PUBLIC_AUTH_KEY}&text=${debounced}&target_lang=DE`, {
-            text: debounced,
-            'target_lang': 'DE',
-            auth_key: process.env.NEXT_PUBLIC_AUTH_KEY
-        }, {
-        })*/
-
-        const res = await axios.post(`https://cors-anywhere.herokuapp.com/https://api.nlpcloud.io/v1/nllb-200-3-3b/translation`, {
-            body: debounced,
-            target: 'deu_Latn',
-        }, {
-            headers: {
-                Authorization: 'TOKEN a174e017a602ee75482aa19a651c9c0f6854675a'
-            }
-        })
-
-        setData(res)
-        console.log(res.data)
-    }
+    const {
+        data: translate,
+        isLoading,
+        error
+    } = useQuery(['translate', debounced], () => TranslateApi.fetchTranslation(debounced, 'pt'));
 
     useEffect(() => {
-        // fetchTranslate();
-        client.translation(debounced).then(console.log)
-    }, [debounced])
+        if (translate) {
+            setData(translate)
+        }
+    }, [debounced, translate]);
 
     return (
-        <div className="">
-            <TextInput value={value} onChange={(e) => setValue(e.currentTarget.value)}/>
+        <div>
+            <>
+                <SelectLanguage/>
+                <Textarea
+                    autosize
+                    placeholder="Autosize with no rows limit"
+                    label="Type something"
+                    minRows={6}
+                    value={value}
+                    onChange={(e) => setValue(e.currentTarget.value)}
+                />
 
-            <div>Value: {debounced}</div>
+                {translate &&
+                    <div>Data: {data && data[0]?.translations.map((translate: any) => {
+                        return <span key={translate.text}>{translate.text}</span>
+                    })}
+                    </div>
+                }
+            </>
         </div>
     )
 }
+
+export default Home;
