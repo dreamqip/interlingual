@@ -11,7 +11,7 @@ const SelectLanguage: FC = () => {
 
     useEffect(() => {
         if (languages) {
-            setAvailableLanguages(languages)
+            // setAvailableLanguages(languages)
             console.log(languages)
         }
     }, [languages, setAvailableLanguages]);
