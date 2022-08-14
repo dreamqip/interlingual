@@ -19,7 +19,7 @@ function MyApp({Component, pageProps}: AppProps) {
             <DefaultSeo {...SEO}/>
             <QueryClientProvider client={queryClient}>
                 <MantineProvider>
-                    <NotificationsProvider>
+                    <NotificationsProvider autoClose={1500}>
                         <Layout>
                             <Component {...pageProps} />
                         </Layout>

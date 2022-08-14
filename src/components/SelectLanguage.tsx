@@ -26,6 +26,8 @@ export const SelectToLanguage: FC = () => {
             transitionDuration={80}
             transitionTimingFunction="ease"
             className="mb-4"
+            aria-label="Select a language"
+            variant="filled"
         />
     );
 };
@@ -53,6 +55,8 @@ export const SelectFromLanguage: FC = () => {
             transitionDuration={80}
             transitionTimingFunction="ease"
             className="mb-4"
+            aria-label="Select a language"
+            variant="filled"
         />
     );
 }

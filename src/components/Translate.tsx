@@ -3,20 +3,27 @@ import {SelectFromLanguage} from "@components/SelectLanguage";
 import {Textarea} from "@mantine/core";
 import {useDebouncedValue} from "@mantine/hooks";
 import useTranslateStore from "@store/translateStore";
+import dynamic from "next/dynamic";
+
+const Dictaphone = dynamic(() => import("@components/Dictaphone"), {ssr: false});
 
 const Translate: FC = () => {
-    const {setText, text} = useTranslateStore();
+    const {setText, text, setTranslation} = useTranslateStore();
     const [value, setValue] = useState<string>('');
     const [debounced] = useDebouncedValue(value, 1000);
 
     useEffect(() => {
         if (debounced) {
-            setText(value);
+            setText(value.toLowerCase());
         }
-    }, [debounced, setText, value]);
+
+        if (!text) {
+            setTranslation('');
+        }
+    }, [debounced, setText, value, text, setTranslation]);
 
     return (
-        <div className="w-[50%]">
+        <div className="w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
             <SelectFromLanguage/>
             <Textarea
                 autosize
@@ -24,7 +31,9 @@ const Translate: FC = () => {
                 minRows={6}
                 value={value || text}
                 onChange={(e) => setValue(e.currentTarget.value)}
+                variant="unstyled"
             />
+            <Dictaphone/>
         </div>
     );
 };

@@ -1,19 +1,12 @@
 import {FC, useEffect} from 'react';
-import {createSpeechlySpeechRecognition} from "@speechly/speech-recognition-polyfill";
 import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
 import {MicrophoneIcon, TranslateIcon} from "@heroicons/react/solid";
 import {Tooltip, Transition} from "@mantine/core";
 import {showNotification} from "@mantine/notifications";
 import useTranslateStore from "@store/translateStore";
 
-/*const appId = `${process.env.NEXT_PUBLIC_SPEECHLY_APP_ID}`;
-const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
-SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);*/
-
 const Dictaphone: FC = () => {
     const {setText, fromLanguage} = useTranslateStore();
-
-    console.log(fromLanguage);
 
     const {
         transcript,
@@ -51,7 +44,7 @@ const Dictaphone: FC = () => {
     }, [transcript, setText, resetTranscript, listening]);
 
     return (
-        <div>
+        <div className="flex">
             <Transition
                 mounted={listening}
                 transition="slide-left"
@@ -64,13 +57,13 @@ const Dictaphone: FC = () => {
                         onTouchEnd={SpeechRecognition.stopListening}
                         onMouseUp={SpeechRecognition.stopListening}
                         style={styles}
-                        className="w-8 h-8"/>
+                        className="w-6 h-6"/>
                 }
             </Transition>
             <Transition
                 mounted={!listening}
                 transition="slide-left"
-                duration={400}
+                duration={200}
                 timingFunction="ease"
             >
                 {styles =>
@@ -80,7 +73,7 @@ const Dictaphone: FC = () => {
                             onTouchStart={startListening}
                             onMouseDown={startListening}
                             style={styles}
-                            className="w-8 h-8"/>
+                            className="w-6 h-6"/>
                     </Tooltip>
                 }
             </Transition>
