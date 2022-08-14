@@ -27,7 +27,6 @@ function MyApp({Component, pageProps}: AppProps) {
                 </MantineProvider>
                 <ReactQueryDevtools initialIsOpen={false}/>
             </QueryClientProvider>
-
         </>
     )
 }

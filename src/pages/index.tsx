@@ -8,9 +8,11 @@ const Dictaphone = dynamic(() => import("@components/Dictaphone"), {ssr: false})
 const Home: NextPage = () => {
 
     return (
-        <div className="flex gap-4">
-            <Translate/>
-            <Translated/>
+        <div className="">
+            <div className="flex gap-4">
+                <Translate/>
+                <Translated/>
+            </div>
             <Dictaphone/>
         </div>
     )

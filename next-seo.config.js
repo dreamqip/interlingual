@@ -1,4 +1,4 @@
 export default {
-    title: 'Translate',
+    title: 'Interlingual - easy translation',
     description: 'Translate easily your content',
 }

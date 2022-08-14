@@ -28,7 +28,7 @@ const Translated: FC = () => {
                 color: 'blue',
             })
         }
-    }, [isFetching]);
+    }, [isFetching, isFetched]);
 
     useEffect(() => {
         if (isFetched) {

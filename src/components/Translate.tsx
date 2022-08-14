@@ -5,7 +5,7 @@ import {useDebouncedValue} from "@mantine/hooks";
 import useTranslateStore from "@store/translateStore";
 
 const Translate: FC = () => {
-    const {setText} = useTranslateStore();
+    const {setText, text} = useTranslateStore();
     const [value, setValue] = useState<string>('');
     const [debounced] = useDebouncedValue(value, 1000);
 
@@ -22,7 +22,7 @@ const Translate: FC = () => {
                 autosize
                 aria-label="Translate text"
                 minRows={6}
-                value={value}
+                value={value || text}
                 onChange={(e) => setValue(e.currentTarget.value)}
             />
         </div>
