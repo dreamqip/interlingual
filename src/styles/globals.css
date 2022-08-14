@@ -6,6 +6,10 @@
     html {
         font-family: 'Poppins', sans-serif;
     }
+
+    body {
+        background: url('../../public/dot.webp');
+    }
 }
 
 #next {

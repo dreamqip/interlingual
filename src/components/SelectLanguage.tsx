@@ -1,31 +1,58 @@
-import {FC, useEffect} from 'react';
-import {Select} from "@mantine/core";
-import {useQuery} from "@tanstack/react-query";
-import TranslateApi from "@services/translate.api";
+import {FC, useEffect, useState} from 'react';
 import useTranslateStore from "../store/translateStore";
+import {Select} from "@mantine/core";
+import {transformedLanguagesWithCode} from "../data/languanges";
 
-const SelectLanguage: FC = () => {
-    const {setAvailableLanguages, availableLanguages} = useTranslateStore();
-
-    const {data: languages, isError} = useQuery(['languages'], () => TranslateApi.fetchLanguages());
+export const SelectToLanguage: FC = () => {
+    const {setToLanguage, toLanguage} = useTranslateStore();
+    const [value, setValue] = useState<string | null>(null);
 
     useEffect(() => {
-        if (languages) {
-            // setAvailableLanguages(languages)
-            console.log(languages)
+        if (value) {
+            setToLanguage(value);
         }
-    }, [languages, setAvailableLanguages]);
-
-    if (isError) {
-        return <div>An error occurred</div>
-    }
+    }, [value, setToLanguage]);
 
     return (
-        /*<Select
-
-        />*/
-        <div>dasd</div>
+        <Select
+            data={transformedLanguagesWithCode}
+            value={toLanguage ?? value}
+            onChange={setValue}
+            searchable
+            placeholder="Select a language"
+            nothingFound="No languages found"
+            maxDropdownHeight={300}
+            transition="pop-top-left"
+            transitionDuration={80}
+            transitionTimingFunction="ease"
+            className="mb-4"
+        />
     );
 };
 
-export default SelectLanguage;
+export const SelectFromLanguage: FC = () => {
+    const {setFromLanguage, fromLanguage} = useTranslateStore();
+    const [value, setValue] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (value) {
+            setFromLanguage(value);
+        }
+    }, [value, setFromLanguage]);
+
+    return (
+        <Select
+            data={transformedLanguagesWithCode}
+            value={fromLanguage ?? value}
+            onChange={setValue}
+            searchable
+            placeholder="Select a language"
+            nothingFound="No languages found"
+            maxDropdownHeight={300}
+            transition="pop-top-left"
+            transitionDuration={80}
+            transitionTimingFunction="ease"
+            className="mb-4"
+        />
+    );
+}

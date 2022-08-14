@@ -1,10 +1,13 @@
 import {FC} from 'react';
+import Image from "next/image";
 
 const Navbar: FC = () => {
     return (
         <header>
             <nav className="py-6">
-                <span>Translate</span>
+                <div className="w-24 h-4 relative">
+                    <Image src='/logo.png' alt='logotype' layout="fill"/>
+                </div>
             </nav>
         </header>
     );

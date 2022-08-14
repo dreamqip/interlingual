@@ -1,24 +1,29 @@
 import create from "zustand";
-import {devtools, persist} from "zustand/middleware";
-
+import {devtools} from "zustand/middleware";
 
 export interface TranslateState {
-    language: string;
-    availableLanguages: string[];
-    setLanguage: (language: string) => void;
-    setAvailableLanguages: (availableLanguages: string[]) => void;
+    fromLanguage: string;
+    toLanguage: string;
+    text: string;
+    translation: string;
+    setFromLanguage: (language: string) => void;
+    setToLanguage: (language: string) => void;
+    setText: (text: string) => void;
+    setTranslation: (translation: string) => void;
 }
 
 const useTranslateStore = create<TranslateState>()(
     devtools(
-        persist(
-            (set) => ({
-                language: 'en',
-                availableLanguages: [],
-                setLanguage: (language: string) => set({language}),
-                setAvailableLanguages: (availableLanguages: string[]) => set({availableLanguages})
-            })
-        )
+        (set) => ({
+            fromLanguage: '',
+            toLanguage: '',
+            text: '',
+            translation: '',
+            setFromLanguage: (fromLanguage: string) => set({fromLanguage}),
+            setToLanguage: (toLanguage: string) => set({toLanguage}),
+            setText: (text: string) => set({text}),
+            setTranslation: (translation: string) => set({translation})
+        })
     )
 )
 

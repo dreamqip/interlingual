@@ -28,7 +28,10 @@
       ],
       "@services/*": [
         "services/*"
-      ]
+      ],
+        "@store/*": [
+            "store/*"
+        ],
     }
   },
   "include": [

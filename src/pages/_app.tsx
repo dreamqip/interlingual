@@ -8,6 +8,7 @@ import {QueryClient} from "@tanstack/query-core";
 import {QueryClientProvider} from "@tanstack/react-query";
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {useState} from "react";
+import {NotificationsProvider} from "@mantine/notifications";
 
 
 function MyApp({Component, pageProps}: AppProps) {
@@ -18,9 +19,11 @@ function MyApp({Component, pageProps}: AppProps) {
             <DefaultSeo {...SEO}/>
             <QueryClientProvider client={queryClient}>
                 <MantineProvider>
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
+                    <NotificationsProvider>
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
+                    </NotificationsProvider>
                 </MantineProvider>
                 <ReactQueryDevtools initialIsOpen={false}/>
             </QueryClientProvider>
@@ -29,4 +32,4 @@ function MyApp({Component, pageProps}: AppProps) {
     )
 }
 
-export default MyApp
+export default MyApp;
