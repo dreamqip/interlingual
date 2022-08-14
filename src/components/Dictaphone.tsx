@@ -28,7 +28,8 @@ const Dictaphone: FC = () => {
         if (!browserSupportsSpeechRecognition) {
             showNotification({
                 message: 'Your browser does not support speech recognition',
-                color: 'red'
+                color: 'red',
+                autoClose: 10000
             })
         }
     }, [isMicrophoneAvailable, browserSupportsSpeechRecognition]);

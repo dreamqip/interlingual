@@ -7,6 +7,7 @@ import {SelectToLanguage} from "@components/SelectLanguage";
 import {showNotification, updateNotification} from "@mantine/notifications";
 import {CheckIcon, ClipboardCopyIcon, ClipboardIcon} from "@heroicons/react/solid";
 import {useClipboard} from "@mantine/hooks";
+import SpeechSynthesis from "@components/SpeechSynthesis";
 
 const Translated: FC = () => {
     const {fromLanguage, toLanguage, text, setTranslation, translation} = useTranslateStore();
@@ -62,7 +63,7 @@ const Translated: FC = () => {
     }
 
     return (
-        <div className="w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
+        <div className="w-full md:w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
             <SelectToLanguage/>
             <Textarea
                 autosize
@@ -74,16 +75,19 @@ const Translated: FC = () => {
                 variant="unstyled"
             />
             {translation && (
-                <Tooltip label="copy to clipboard">
-                    <ClipboardIcon
-                        onClick={onCopy}
-                        role="button"
-                        className="w-6 h-6 accent-green-500"
-                    />
-                </Tooltip>
+                <div className="flex gap-4">
+                    <Tooltip label="copy to clipboard" withArrow arrowSize={6}>
+                        <ClipboardIcon
+                            onClick={onCopy}
+                            role="button"
+                            className="w-6 h-6 cursor-pointer"
+                        />
+                    </Tooltip>
+                    <SpeechSynthesis/>
+                </div>
             )}
         </div>
     );
-};
+}
 
 export default Translated;

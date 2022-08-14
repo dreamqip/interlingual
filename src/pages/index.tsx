@@ -6,7 +6,7 @@ const Home: NextPage = () => {
 
     return (
         <div className="">
-            <div className="flex gap-4">
+            <div className="flex justify-center items-center flex-col md:flex-row gap-4 md:pt-14 pb-14">
                 <Translate/>
                 <Translated/>
             </div>

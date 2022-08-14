@@ -23,13 +23,13 @@ const Translate: FC = () => {
     }, [debounced, setText, value, text, setTranslation]);
 
     return (
-        <div className="w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
+        <div className="w-full md:w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
             <SelectFromLanguage/>
             <Textarea
                 autosize
                 aria-label="Translate text"
                 minRows={6}
-                value={value || text}
+                value={value}
                 onChange={(e) => setValue(e.currentTarget.value)}
                 variant="unstyled"
             />
