@@ -1,14 +1,19 @@
+import {Suspense} from "react";
 import {NextPage} from "next";
-import Translate from "@components/Translate";
-import Translated from "@components/Translated";
+import dynamic from "next/dynamic";
+import Loader from "@components/Loader";
+
+const Translate = dynamic(() => import("@components/Translate"), {suspense: true});
+const Translated = dynamic(() => import("@components/Translated"), {suspense: true});
 
 const Home: NextPage = () => {
-
     return (
-        <div className="">
-            <div className="flex justify-center items-center flex-col md:flex-row gap-4 md:pt-14 pb-14">
-                <Translate/>
-                <Translated/>
+        <div>
+            <div className="flex justify-center flex-col md:flex-row gap-4 md:pt-14 pb-14">
+                <Suspense fallback={<Loader/>}>
+                    <Translate/>
+                    <Translated/>
+                </Suspense>
             </div>
         </div>
     )

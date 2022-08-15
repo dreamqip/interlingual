@@ -53,12 +53,15 @@ const Dictaphone: FC = () => {
                 timingFunction="ease"
             >
                 {styles =>
-                    <TranslateIcon
-                        role="button"
-                        onTouchEnd={SpeechRecognition.stopListening}
-                        onMouseUp={SpeechRecognition.stopListening}
-                        style={styles}
-                        className="w-6 h-6"/>
+                    <div className="p-2 rounded-full hover:bg-slate-100 focus:bg-slate-100 transition-all">
+                        <TranslateIcon
+                            role="button"
+                            onTouchEnd={SpeechRecognition.stopListening}
+                            onMouseUp={SpeechRecognition.stopListening}
+                            style={styles}
+                            className="w-6 h-6"
+                        />
+                    </div>
                 }
             </Transition>
             <Transition
@@ -69,12 +72,15 @@ const Dictaphone: FC = () => {
             >
                 {styles =>
                     <Tooltip label="hold to translate by voice" withArrow arrowSize={6}>
-                        <MicrophoneIcon
-                            role="button"
-                            onTouchStart={startListening}
-                            onMouseDown={startListening}
-                            style={styles}
-                            className="w-6 h-6"/>
+                        <div className="p-2 rounded-full hover:bg-slate-100 focus:bg-slate-100 transition-all">
+                            <MicrophoneIcon
+                                role="button"
+                                onTouchStart={startListening}
+                                onMouseDown={startListening}
+                                style={styles}
+                                className="w-6 h-6"
+                            />
+                        </div>
                     </Tooltip>
                 }
             </Transition>

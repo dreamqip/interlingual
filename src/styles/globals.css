@@ -8,10 +8,10 @@
     }
 
     body {
-        background: url('../../public/dot.webp');
+        padding-top: 64px;
     }
 }
 
-#next {
+#next, body, html {
     @apply min-h-screen
 }

@@ -23,7 +23,7 @@ const Translate: FC = () => {
     }, [debounced, setText, value, text, setTranslation]);
 
     return (
-        <div className="w-full md:w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
+        <div className="w-full md:w-[50%] relative bg-slate-50 p-4 rounded-2xl shadow">
             <SelectFromLanguage/>
             <Textarea
                 autosize

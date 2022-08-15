@@ -32,18 +32,22 @@ const SpeechSynthesis: FC = () => {
         <div className="flex">
             {speaking
                 ? <Tooltip label="cancel" withArrow arrowSize={6}>
-                    <VolumeOffIcon
-                        role="button"
-                        onClick={onCancel}
-                        className="w-6 h-6"
-                    />
+                    <div className="p-2 rounded-full hover:bg-slate-100 focus:bg-slate-100 transition-all">
+                        <VolumeOffIcon
+                            role="button"
+                            onClick={onCancel}
+                            className="w-6 h-6"
+                        />
+                    </div>
                 </Tooltip>
                 : <Tooltip label="listen" withArrow arrowSize={6}>
-                    <VolumeUpIcon
-                        role="button"
-                        onClick={onSpeak}
-                        className="w-6 h-6"
-                    />
+                    <div className="p-2 rounded-full hover:bg-slate-100 focus:bg-slate-100 transition-all">
+                        <VolumeUpIcon
+                            role="button"
+                            onClick={onSpeak}
+                            className="w-6 h-6"
+                        />
+                    </div>
                 </Tooltip>
             }
         </div>

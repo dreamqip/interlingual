@@ -10,7 +10,6 @@ import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {useState} from "react";
 import {NotificationsProvider} from "@mantine/notifications";
 
-
 function MyApp({Component, pageProps}: AppProps) {
     const [queryClient] = useState(() => new QueryClient({defaultOptions: {queries: {refetchOnWindowFocus: false}}}));
 

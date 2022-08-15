@@ -63,7 +63,7 @@ const Translated: FC = () => {
     }
 
     return (
-        <div className="w-full md:w-[50%] bg-slate-50 p-4 rounded-2xl shadow">
+        <div className="w-full md:w-[50%] relative bg-slate-50 p-4 rounded-2xl shadow">
             <SelectToLanguage/>
             <Textarea
                 autosize
@@ -75,13 +75,15 @@ const Translated: FC = () => {
                 variant="unstyled"
             />
             {translation && (
-                <div className="flex gap-4">
+                <div className="flex">
                     <Tooltip label="copy to clipboard" withArrow arrowSize={6}>
-                        <ClipboardIcon
-                            onClick={onCopy}
-                            role="button"
-                            className="w-6 h-6 cursor-pointer"
-                        />
+                        <div className="p-2 rounded-full hover:bg-slate-100 focus:bg-slate-100 transition-all">
+                            <ClipboardIcon
+                                onClick={onCopy}
+                                role="button"
+                                className="w-6 h-6 cursor-pointer"
+                            />
+                        </div>
                     </Tooltip>
                     <SpeechSynthesis/>
                 </div>
