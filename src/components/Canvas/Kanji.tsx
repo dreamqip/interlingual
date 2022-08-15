@@ -20,7 +20,7 @@ const Kanji: FC<{ z: number }> = ({z}) => {
 
     useFrame(() => {
         ref.current.rotation.set((data.rX += 0.001), (data.rY += 0.001), (data.rZ += 0.001));
-        ref.current.position.set(data.x * width, (data.y += 0.25), z);
+        ref.current.position.set(data.x * width, (data.y += 0.025), z);
 
         if (data.y > height) data.y = -height;
     });
