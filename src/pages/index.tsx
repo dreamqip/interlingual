@@ -9,7 +9,7 @@ const Translated = dynamic(() => import("@components/Translated"), {suspense: tr
 const Home: NextPage = () => {
     return (
         <div>
-            <div className="flex justify-center flex-col md:flex-row gap-4 md:pt-14 pb-14">
+            <div className="flex justify-center flex-col md:flex-row gap-4 py-10 md:py-14">
                 <Suspense fallback={<Loader/>}>
                     <Translate/>
                     <Translated/>
