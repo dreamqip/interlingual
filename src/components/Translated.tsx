@@ -63,7 +63,7 @@ const Translated: FC = () => {
     }
 
     return (
-        <div className="w-full md:w-[50%] relative bg-slate-50 p-4 rounded-2xl shadow">
+        <div className="w-full md:w-[50%] relative bg-gray-200 p-4 rounded-2xl shadow shadow-gray-400">
             <SelectToLanguage/>
             <Textarea
                 autosize
